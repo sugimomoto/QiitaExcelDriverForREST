@@ -1,0 +1,80 @@
+<rsb:script xmlns:rsb="http://www.rssbus.com/ns/rsbscript/2" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <!-- See Column Definitions to specify column behavior and use XPaths to extract column values from JSON. -->
+  <rsb:info title="Items" desc="Generated schema file." xmlns:other="http://www.rssbus.com/ns/rsbscript/2/other">
+    <!-- You can modify the name, type, and column size here.  The name must match the values in the rsb:script block below -->
+    <attr name="body"                     xs:type="string"   readonly="false" other:xPath="body"                      />
+    <attr name="coediting"                xs:type="boolean"  readonly="false" other:xPath="coediting"                 />
+    <attr name="comments_count"           xs:type="integer"  readonly="false" other:xPath="comments_count"            />
+    <attr name="created_at"               xs:type="datetime" readonly="false" other:xPath="created_at"                />
+    <attr name="group"                    xs:type="unknown"  readonly="false" other:xPath="group"                     />
+    <attr name="id"                       xs:type="string"   readonly="false" other:xPath="id"                        />
+    <attr name="likes_count"              xs:type="integer"  readonly="false" other:xPath="likes_count"               />
+    <attr name="private"                  xs:type="boolean"  readonly="false" other:xPath="private"                   />
+    <attr name="reactions_count"          xs:type="integer"  readonly="false" other:xPath="reactions_count"           />
+    <attr name="rendered_body"            xs:type="string"   readonly="false" other:xPath="rendered_body"             />
+    <attr name="tags_1_name"              xs:type="string"   readonly="false" other:xPath="tags[1]/name"              />
+    <attr name="tags_2_name"              xs:type="string"   readonly="false" other:xPath="tags[2]/name"              />
+    <attr name="tags_3_name"              xs:type="string"   readonly="false" other:xPath="tags[3]/name"              />
+    <attr name="tags_4_name"              xs:type="string"   readonly="false" other:xPath="tags[4]/name"              />
+    <attr name="tags_name"                xs:type="string"   readonly="false" other:xPath="tags/name"                 />
+    <attr name="title"                    xs:type="string"   readonly="false" other:xPath="title"                     />
+    <attr name="updated_at"               xs:type="datetime" readonly="false" other:xPath="updated_at"                />
+    <attr name="url"                      xs:type="string"   readonly="false" other:xPath="url"                       />
+    <attr name="user_description"         xs:type="string"   readonly="false" other:xPath="user/description"          />
+    <attr name="user_facebook_id"         xs:type="string"   readonly="false" other:xPath="user/facebook_id"          />
+    <attr name="user_followees_count"     xs:type="integer"  readonly="false" other:xPath="user/followees_count"      />
+    <attr name="user_followers_count"     xs:type="integer"  readonly="false" other:xPath="user/followers_count"      />
+    <attr name="user_github_login_name"   xs:type="string"   readonly="false" other:xPath="user/github_login_name"    />
+    <attr name="user_id"                  xs:type="string"   readonly="false" other:xPath="user/id"                   />
+    <attr name="user_items_count"         xs:type="integer"  readonly="false" other:xPath="user/items_count"          />
+    <attr name="user_linkedin_id"         xs:type="unknown"  readonly="false" other:xPath="user/linkedin_id"          />
+    <attr name="user_location"            xs:type="string"   readonly="false" other:xPath="user/location"             />
+    <attr name="user_name"                xs:type="string"   readonly="false" other:xPath="user/name"                 />
+    <attr name="user_organization"        xs:type="string"   readonly="false" other:xPath="user/organization"         />
+    <attr name="user_permanent_id"        xs:type="integer"  readonly="false" other:xPath="user/permanent_id"         />
+    <attr name="user_profile_image_url"   xs:type="string"   readonly="false" other:xPath="user/profile_image_url"    />
+    <attr name="user_twitter_screen_name" xs:type="string"   readonly="false" other:xPath="user/twitter_screen_name"  />
+    <attr name="user_website_url"         xs:type="string"   readonly="false" other:xPath="user/website_url"          />
+  </rsb:info>
+
+  <rsb:set attr="uri" value="https://qiita.com/api/v2/items" />
+
+  <!-- Column XPaths are relative to a RepeatElement that splits the JSON into rows. -->
+  <rsb:set attr="RepeatElement" value="/" />
+
+  <!-- The GET method corresponds to SELECT. Within the script block, you can see the URI modified to append a query string parameter. The results of processing are pushed to the schema's output. See SELECT Execution for more information. -->
+  <rsb:script method="GET">
+    <rsb:call op="jsonproviderGet">
+      <rsb:push/>
+    </rsb:call>
+  </rsb:script>
+
+  <!-- To add support for INSERTS please see the INSERT Execution page within the help for further information and examples. -->
+  <rsb:script method="POST">
+    <rsb:set attr="method" value="POST"/>
+    <rsb:call op="jsonproviderGet">
+      <rsb:throw code="500" desc="Inserts are not currently supported."/>
+      <rsb:push/>
+    </rsb:call>
+  </rsb:script>
+
+  <!-- To add support for UPDATES please see the UPDATE Execution page within the help for further information and examples. -->
+  <rsb:script method="MERGE">
+    <rsb:set attr="method" value="PUT"/>
+    <rsb:call op="jsonproviderGet">
+      <rsb:throw code="500" desc="Updates are not currently supported."/>
+      <rsb:push/>
+    </rsb:call>
+  </rsb:script>
+
+  <!-- To add support for DELETES please see the DELETE Execution page within the help for further information and examples. -->
+  <rsb:script method="DELETE">
+    <rsb:set attr="method" value="DELETE"/>
+    <rsb:call op="jsonproviderGet">
+      <rsb:throw code="500" desc="Deletes are not currently supported."/>
+      <rsb:push/>
+    </rsb:call>
+  </rsb:script>
+
+</rsb:script>
